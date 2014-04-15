@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3F4D4DFC-5BAC-49AD-82CC-A279FC5B99CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DCEL</RootNamespace>
+    <AssemblyName>DCEL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Containment.cs" />
+    <Compile Include="DCEL_Element.cs" />
+    <Compile Include="DCEL_Face.cs" />
+    <Compile Include="DCEL_HalfEdge.cs" />
+    <Compile Include="DCEL_Helper.cs" />
+    <Compile Include="DCEL_Subdivision.cs" />
+    <Compile Include="DCEL_Vertex.cs" />
+    <Compile Include="GeomAid.cs" />
+    <Compile Include="IntRange.cs" />
+    <Compile Include="IRange.cs" />
+    <Compile Include="IRegion.cs" />
+    <Compile Include="LineProjectionTransform.cs" />
+    <Compile Include="LineSegmentIntersection.cs" />
+    <Compile Include="MathAid.cs" />
+    <Compile Include="OA_Algorithm.cs" />
+    <Compile Include="OA_EventPoint.cs" />
+    <Compile Include="OA_Segment.cs" />
+    <Compile Include="OA_Source.cs" />
+    <Compile Include="OA_Sweepline.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomAid.cs" />
+    <Compile Include="Rational.cs" />
+    <Compile Include="RBTree.cs" />
+    <Compile Include="Rotation.cs" />
+    <Compile Include="SegRat1.cs" />
+    <Compile Include="SegRat2.cs" />
+    <Compile Include="Turn.cs" />
+    <Compile Include="VecInt2.cs" />
+    <Compile Include="VecRat2.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
