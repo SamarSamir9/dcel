@@ -18,6 +18,8 @@ namespace DCEL
             //Func<DCEL_HalfEdge, DCEL_Vertex> halfEdgeSplitTag,
             //Func<DCEL_Face, DCEL_HalfEdge> faceSplitTag)
         {
+            subdivisions = subdivisions.ToList();
+
             if (subdivisions.IsEmpty())
                 throw new InvalidOperationException("Must input at least one Subdivision.");
 
@@ -25,6 +27,36 @@ namespace DCEL
                 subdivisions = subdivisions.CollapsePairs(OA_Algorithm.Overlay).ToList();
 
             return subdivisions.First();
+        }
+
+        public static DCEL_Subdivision OverlayMany(IEnumerable<DCEL_Subdivision> subdivisions)
+        {
+            OA_Algorithm algorithm = new OA_Algorithm(subdivisions);
+
+            algorithm.phase = Phase.SplittingPhase;
+
+            algorithm.Initialize();
+            algorithm.Sweep();
+
+            algorithm.phase = Phase.MergingPhase;
+
+            algorithm.Initialize();
+            algorithm.Sweep();
+
+            algorithm.outputSubdivision.WriteToFile("outputSubdivision_post_merging.xml");
+
+            algorithm.phase = Phase.FacingPhase;
+
+            algorithm.CreateFaces();
+
+            algorithm.outputSubdivision.WriteToFile("outputSubdivision_final.xml");
+            algorithm.outputSubdivision.WriteToFile_Faces("outputSubdivision_final_faces.xml");
+
+            //The inputSubdivisions have been destroyed, so clear them.
+            foreach (DCEL_Subdivision inputSubdivision in algorithm.inputSubdivisions)
+                inputSubdivision.Clear();
+
+            return algorithm.outputSubdivision;
         }
 
         /// <summary>

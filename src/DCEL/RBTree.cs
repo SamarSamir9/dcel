@@ -234,6 +234,25 @@ namespace DCEL
         }
 
         /// <summary>
+        /// Enumerates in ascending order the keys in the tree.
+        /// </summary>
+        public IEnumerable<TKey> Keys
+        {
+            get
+            {
+                return GetKeys(true);
+            }
+        }
+
+        /// <summary>
+        /// Enumerates the keys in a tree.
+        /// </summary>
+        public IEnumerable<TKey> GetKeys(bool ascending)
+        {
+            return GetNodes(ascending).Select(node => node.Key);
+        }
+
+        /// <summary>
         /// Enumerates in ascending order the values in the tree.
         /// </summary>
         public IEnumerable<TValue> Values
@@ -250,6 +269,25 @@ namespace DCEL
         public IEnumerable<TValue> GetValues(bool ascending)
         {
             return GetNodes(ascending).Select(node => node.Value);
+        }
+
+        /// <summary>
+        /// Enumerates in ascending order the (key, value) pairs in the tree.
+        /// </summary>
+        public IEnumerable<KeyValuePair<TKey, TValue>> Pairs
+        {
+            get
+            {
+                return GetPairs(true);
+            }
+        }
+
+        /// <summary>
+        /// Enumerates the (key, value) pairs in the tree.
+        /// </summary>
+        public IEnumerable<KeyValuePair<TKey, TValue>> GetPairs(bool ascending)
+        {
+            return GetNodes(ascending).Select(node => new KeyValuePair<TKey, TValue>(node.Key, node.Value));
         }
 
         /// <summary>

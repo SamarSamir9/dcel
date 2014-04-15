@@ -68,7 +68,12 @@ namespace DCEL
             UnboundedFace = face;
         }
 
-        public static DCEL_Subdivision MakeClosedPolygon(
+        public static DCEL_Subdivision MakeClosedPolygon(params VecRat2[] vertices)
+        {
+            return OA_Algorithm.Overlay(
+                Enumerable.Range(0, vertices.Length)
+                .Select(i => new DCEL_Subdivision(vertices[i], vertices[(i + 1) % vertices.Length])));
+        }
 
         public override string ToString()
         {
